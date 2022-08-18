@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Snake v2</title>
+</head>
+<body>
+
+ <div class="container">
+
+    <form id="nombrePlayer">
+        <div class="mb-3 player">
+          <label for="nombre" class="form-label">Player</label>
+          <input type="nombre" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nick">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Jugador</button>
+      </form>
+ </div>
+
+   <div id="board"></div>
+   <div class="boardInfo">
+    <div>
+      score: <div id="scoreBoard"></div>
+    </div>
+      <button id="start">Start</button>
+    </div>
+    <div id="gameOver">Game Over</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container">
+       <button id="playerStats" class="ests btn btn-secondary">Mostrar Estadisticas</button>
+       <div id="divStats" class="row"></div>
+   </div>
+  
+
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

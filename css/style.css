@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+*{
+    font-family: 'Silkscreen', cursive;
+    
+}
+
+.player{
+    text-align: center;
+    font-size: 2rem ;
+}
+.ests{
+    margin-top: 15px;
+}
+
+#board, .boardInfo{
+    max-width: 500px;
+ }
+     
+ #board{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    margin: 0 auto;
+}
+ #start, .boardInfo{
+    font-size: 25px;
+ }
+ #gameOver{
+    display: none;
+    color: #Fff;
+ }
+
+ .boardInfo{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #fff;
+}
+
+#start{
+    
+    background: #f35a69;
+    border: none;
+    color: #fff;
+}
+#scoreBoard{
+    display: inline-flex;
+    color: #Fff;
+}
+.square{
+    aspect-ratio: 1;
+}
+.emptySquare{
+    background: #a7c957;
+    box-shadow: 0 2px 11px #a7c957;
+}
+
+.snakeSquare{
+    background: #2d6a4f;
+    box-shadow: 0 2px 20px #2d6a4f,0 2px 20px #2d6a4f;
+    
+}
+
+.foodSquare{
+    background: #e71d36;
+    border-radius: 6px;
+    border: 2px solid #e71d36;
+    box-shadow: 0 2px 16px #e71d36 ;
+}
+

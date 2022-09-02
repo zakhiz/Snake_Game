@@ -1,18 +1,18 @@
-class Jugador{
-    constructor(nombre){
-       this.nombre = nombre;
+class Player{
+    constructor(name){
+       this.name = name;
     }
 }
 
-let jugadores =[];
+let players =[];
 
-if(localStorage.getItem("jugadores")){
-     jugadores = JSON.parse(localStorage.getItem("jugadores"));
+if(localStorage.getItem("players")){
+     players = JSON.parse(localStorage.getItem("players"));
 }else{
-    localStorage.setItem("jugadores", JSON.stringify(jugadores));
+    localStorage.setItem("players", JSON.stringify(players));
 }
 
-const formPlayer = document.getElementById("nombrePlayer");
+const formPlayer = document.getElementById("namePlayer");
 const stats = document.getElementById("playerStats")
 const divStats =  document.getElementById("divStats")
 
@@ -20,9 +20,9 @@ const divStats =  document.getElementById("divStats")
 formPlayer.addEventListener("submit",(e)=>{
     e.preventDefault()
     const datForm = new FormData(e.target);
-    const playerObj = new Jugador(datForm.get("nombre"));
-    jugadores.push(playerObj);
-    localStorage.setItem("jugadores", JSON.stringify(jugadores));
+    const playerObj = new Player(datForm.get("name"));
+    players.push(playerObj);
+    localStorage.setItem("players", JSON.stringify(players));
     formPlayer.reset();
     
 })
@@ -33,11 +33,10 @@ const board = document.getElementById("board");
 const scoreBoard = document.getElementById("scoreBoard");
 const startButton = document.getElementById("start");
 const gameOverSign = document.getElementById("gameOver");
-//*
 
-//* Configuracion del juego 
-const boardSize = 10;
-const gameSpeed = 100;
+const boardSize = 10;  //* tamaño del tablero
+const gameSpeed = 100; //*la velocidad de la snake
+
 //* tipos de cuadrados
 const squareTypes = {
     emptySquare: 0,
@@ -115,13 +114,12 @@ const addFood = ()=>{
 
 //* esta funcion muestra el mensaje de game over, detenemos el intervalo y habilita el boton de inicio
 const gameOver = () =>{
-    gameOverSign.style.display = "none";
     clearInterval(moveInterval);
     startButton.disabled = false; 
     Swal.fire({
         icon: 'error',
         title: 'Game Over :C',
-        text: 'Dale en Start para volver a intentarlo',
+        text: 'Press the start button to play again',
       })
 }
 //* con el ArrowUp llamas  a la funcion setDirection esta funcion va a recibir una nueva direccion y setea la variable direction hacia una nueva direccion 
@@ -188,7 +186,6 @@ const setGame= () =>{
 //* funcion del inicio del juego
 const startGame = ()=>{
     setGame();
-    gameOverSign.style.display = "none";
     startButton.disabled = true;
     drawSnake();
     updateScore();
@@ -205,72 +202,52 @@ startButton.addEventListener("click", startGame);
 
 
 //!-------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 stats.addEventListener("click",()=>{
-const statsStorage = JSON.parse(localStorage.getItem("jugadores"))
+const statsStorage = JSON.parse(localStorage.getItem("players"))
     divStats.innerHTML = ""; 
-    statsStorage.forEach((nombre, indice) => {
+    statsStorage.forEach((name, indice) => {
         divStats.innerHTML += `
-        <div class="card text-white bg-primary mb-3" id="nombre${indice}"style="max-width: 16rem; margin-top : 14px;">
-           <div class="card-header"><h3>${nombre.nombre}</h3></div>
+        <div class="card text-white bg-primary mb-3" id="name${indice}"style="max-width: 16rem; margin-top : 14px;">
+           <div class="card-header"><h3>${name.name}</h3></div>
            <div class="card-body">
-           <button class="btn btn-danger">Borrar tarea</button>
+           <button class="btn btn-danger">delete user</button>
            </div>
       </div>
         `
     });
-    statsStorage.forEach((nombre,indice)=>{
-document.getElementById(`nombre${indice}`).children[1].children[0].addEventListener("click",()=>{
-    document.getElementById(`nombre${indice}`).remove();
-    jugadores.splice(indice,1);
-    localStorage.setItem("jugadores", JSON.stringify(jugadores));
+    statsStorage.forEach((name,indice)=>{
+document.getElementById(`name${indice}`).children[1].children[0].addEventListener("click",()=>{
+    document.getElementById(`name${indice}`).remove();
+    players.splice(indice,1);
+    localStorage.setItem("players", JSON.stringify(players));
 })
     })
 });
+//!----------------------------------------------------------------------------------------------------------
+
+const divPlayers = document.getElementById("divPlayer");
+
+fetch('./json/users.json').then(response => response.json()).then(users=>{
+    users.forEach((users,indice)=>{
+       divPlayers.innerHTML +=`
+       <div class="container">
+         <table class="table table-dark table-striped" id="users${indice}">
+         <thead>
+         <tr>
+           <th scope="col">User</th>
+           <th scope="col">Score</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td>${users.user}</td>
+           <td>${users.score}</td>
+         </tr>
+       </tbody>
+         </table>
+       </div>
+       `
+    })
+})
+/*
+*/

@@ -4,6 +4,9 @@
     
 }
 
+.container{
+    padding: 5px;
+}
 .player{
     text-align: center;
     font-size: 2rem ;
@@ -24,21 +27,14 @@
  #start, .boardInfo{
     font-size: 25px;
  }
- #gameOver{
-    display: none;
-    color: #Fff;
- }
 
  .boardInfo{
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
     margin-top: 10px;
     color: #fff;
 }
 
 #start{
-    
     background: #f35a69;
     border: none;
     color: #fff;
@@ -68,3 +64,6 @@
     box-shadow: 0 2px 16px #e71d36 ;
 }
 
+.record{
+    text-align: center;
+}

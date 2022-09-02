@@ -6,45 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Snake v2</title>
+    <title>Snake</title>
 </head>
 <body>
 
  <div class="container">
 
-    <form id="nombrePlayer">
+    <form id="namePlayer">
         <div class="mb-3 player">
-          <label for="nombre" class="form-label">Player</label>
-          <input type="nombre" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nick">
+          <label for="name" class="form-label">Snake</label>
+          <input type="name" class="form-control" name="name" id="name" placeholder="Enter your username">
         </div>
-        <button type="submit" class="btn btn-primary">Crear Jugador</button>
+        <button type="submit" class="btn btn-primary">Create User</button>
       </form>
  </div>
 
    <div id="board"></div>
    <div class="boardInfo">
-    <div>
-      score: <div id="scoreBoard"></div>
-    </div>
       <button id="start">Start</button>
     </div>
-    <div id="gameOver">Game Over</div>
-
-
-
-
-
-
-
-
-
-
-
-
+    <div id="gameOver"></div>
 
    <div class="container">
-       <button id="playerStats" class="ests btn btn-secondary">Mostrar Estadisticas</button>
+       <button id="playerStats" class="ests btn btn-secondary">View User</button>
+       
        <div id="divStats" class="row"></div>
+       <div>
+        score: <div id="scoreBoard"></div>
+       </div>
+   </div>
+   <div id="divPlayer">
+    <h2 class="record">Record Users</h2>
    </div>
   
 

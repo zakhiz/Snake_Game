@@ -3,7 +3,7 @@ class Player{
        this.name = name;
     }
 }
-
+//* crea el localstorage
 let players =[];
 
 if(localStorage.getItem("players")){
@@ -16,7 +16,7 @@ const formPlayer = document.getElementById("namePlayer");
 const stats = document.getElementById("playerStats")
 const divStats =  document.getElementById("divStats")
 
-
+//* crea el usuario y lo guarda en el localstorage
 formPlayer.addEventListener("submit",(e)=>{
     e.preventDefault()
     const datForm = new FormData(e.target);
@@ -27,7 +27,6 @@ formPlayer.addEventListener("submit",(e)=>{
     
 })
 
-//!---------------------------------------------------------------------
 //* Elementos Html
 const board = document.getElementById("board");
 const scoreBoard = document.getElementById("scoreBoard");
@@ -102,7 +101,7 @@ const moveSnake = ()=>{
         drawSnake();
      } 
 }
-//* agrega el un cuadrado a la serpiente, actualiza el score y genera otra comida para que el jugador siga jugando
+//* agrega un cuadrado a la serpiente, actualiza el score , genera otra comida y guarda el score en el localstorage
 let resultado;
 const addFood = ()=>{
     score++;
@@ -112,14 +111,14 @@ const addFood = ()=>{
     localStorage.setItem("score",JSON.stringify(score))
 }
 
-//* esta funcion muestra el mensaje de game over, detenemos el intervalo y habilita el boton de inicio
+//* esta funcion muestra el mensaje de game over y el score , detiene  el intervalo y habilita el boton de inicio 
 const gameOver = () =>{
     clearInterval(moveInterval);
     startButton.disabled = false; 
     Swal.fire({
         icon: 'error',
-        title: 'Game Over :C',
-        text: 'Press the start button to play again',
+        title: 'Game Over :C ',
+        text: `Press the start button to play again Your score : ${score}`,
       })
 }
 //* con el ArrowUp llamas  a la funcion setDirection esta funcion va a recibir una nueva direccion y setea la variable direction hacia una nueva direccion 
@@ -202,6 +201,7 @@ startButton.addEventListener("click", startGame);
 
 
 //!-------------------------------------------------------------------------------------------------------------------------
+//* borra el usuario del localstorage
 stats.addEventListener("click",()=>{
 const statsStorage = JSON.parse(localStorage.getItem("players"))
     divStats.innerHTML = ""; 
@@ -223,31 +223,6 @@ document.getElementById(`name${indice}`).children[1].children[0].addEventListene
 })
     })
 });
-//!----------------------------------------------------------------------------------------------------------
 
-const divPlayers = document.getElementById("divPlayer");
 
-fetch('./json/users.json').then(response => response.json()).then(users=>{
-    users.forEach((users,indice)=>{
-       divPlayers.innerHTML +=`
-       <div class="container">
-         <table class="table table-dark table-striped" id="users${indice}">
-         <thead>
-         <tr>
-           <th scope="col">User</th>
-           <th scope="col">Score</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td>${users.user}</td>
-           <td>${users.score}</td>
-         </tr>
-       </tbody>
-         </table>
-       </div>
-       `
-    })
-})
-/*
-*/
+
